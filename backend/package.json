@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Monday app",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server --id _id --port 3030 --watch db/boardDB.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomer and Dudi",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "4.17.1",
+    "express-session": "^1.17.2",
+    "mongodb": "^4.1.0"
+  }
+}

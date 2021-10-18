@@ -1,0 +1,132 @@
+.login {
+    width: 500px;
+    &.input {
+        width: 95%;
+    }
+    h4 {
+        font-weight: normal;
+        &span {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+    h1 {
+        font-size: 1.6em;
+        margin: 30px;
+        margin-inline-start: 0px;
+        margin-block-end: 0px;
+    }
+    p {
+        position: absolute;
+        bottom: 160px;
+        width: 90%;
+        left: 5%;
+        text-align: left;
+        font-size: 0.8em;
+    }
+    .continue {
+        margin-block-start: 3px;
+        margin-block-end: rem(20px);
+        font-style: inherit;
+        color: rgb(136, 136, 136);
+    }
+    // .register-btn {
+    //     border: none;
+    //     cursor: pointer;
+    //     background-color: #d24d57;
+    //     &:hover{
+    //         background-color: #c02b36;
+    //     }
+    // }
+    .sign-up {
+        padding: 5px;
+    }
+    .rounded {
+        width: 45% !important;
+        cursor: pointer;
+        border: none;
+        background-color: #d24d57;
+        // width: 100% !important;
+        border-radius: 15px;
+        color: rgb(251, 251, 251);
+        &:hover {
+            background-color: #c02b36;
+        }
+    }
+
+    span {
+        font-weight: 700;
+        /* color: #2bbe76; */
+        /* color: #ec9a56; */
+        /* color: #6130d4; */
+        color: #c02b36;
+        cursor: pointer;
+    }
+
+    .input:focus {
+        outline: none !important;
+        border-color: #719ece;
+        box-shadow: 0 0 10px #719ece;
+    }
+
+    .register-btn {
+        /* padding: 10px; */
+        background-color: #fff;
+        width: 45% !important;
+        border-radius: 15px;
+        cursor: pointer;
+        border: none;
+        font-size: 1.1em;
+        color: rgb(129, 129, 129);
+        padding: 5px;
+        &:hover {
+            background-color: rgba(47, 47, 47, 0.075);
+        }
+    }
+    .regitser-button {
+        background-color: #d24d57;
+        width: 100% !important;
+        border-radius: 15px;
+        cursor: pointer;
+        border: none;
+        font-size: 1.1em;
+        color: rgb(251, 251, 251);
+        padding: 5px;
+        &:hover {
+            background-color: #c02b36;
+        }
+    }
+}
+
+.login .input,
+.login .rounded {
+    width: 100%;
+    height: 2em;
+    font-size: 1em;
+}
+
+/* media query */
+@media only screen and (max-width: 1000px) {
+    .login {
+        width: 300px;
+    }
+    .login h1 {
+        font-size: 1.5em;
+        color: #5a5a5a;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .login-wrapper {
+        flex-direction: column;
+    }
+    .login h1 {
+        font-size: 1.6em;
+    }
+    .register-btn {
+        font-weight: 500;
+    }
+    .rounded {
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,35 @@
+// Setup
+@import "setup/variables.scss";
+@import "setup/functions.scss";
+@import "setup/mixins.scss";
+
+// Basics
+@import "basics/typography.scss";
+@import "basics/helpers.scss";
+@import "basics/layout.scss";
+@import "basics/base.scss";
+@import "basics/animations";
+@import "basics/inputs";
+@import "./basics/buttons";
+
+// Cmps
+@import "../modules/board/cmps/BoardNavigationList.scss";
+@import "../modules/board/cmps/BoardNavigationPreview.scss";
+@import "../modules/board/cmps/BoardSideBar.scss";
+@import "../modules/board/cmps/BoardHeader.scss";
+@import "../modules/task/cmps/TaskList.scss";
+@import "../modules/task/cmps/TaskPreview.scss";
+@import "../modules/group/cmps/GroupList.scss";
+@import "../modules/group/cmps/GroupPreview.scss";
+@import "../modules/navigation/screens/MainNav.scss";
+@import "../modules/navigation/cmps/MainNavTopLogos.scss";
+@import "../modules/navigation/cmps/MainNavDownLogos.scss";
+@import "../modules/task/cmps/TaskUpdates.scss";
+@import "../modules/task/cmps/TaskComments.scss";
+@import "../modules/user/cmps/LoginSignup.scss";
+//Pages
+@import "../modules/board/screens/BoardApp.scss";
+@import "../modules/user/screens/Register.scss";
+
+//Shared
+@import "../shared/cmps/PopUpModal.scss";

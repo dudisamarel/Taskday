@@ -1,0 +1,48 @@
+.task-grid {
+    background-color: $grey-background-color;
+    display: grid;
+    grid-template-columns: rem(26px) minmax(50px , 60vw) rem(84.1px) rem(120px) rem(120px);
+    // grid-template-columns: 0.026fr minmax(200px ,500px) 0.0841fr 0.12fr 0.12fr ;
+    // grid-template-columns: 0.026fr 0.612fr 0.0841fr 0.12fr 0.12fr ;
+    align-items: center;
+    grid-gap: rem(5px);
+    .task-title {
+        align-self: center;
+    }
+    .main-status {
+        padding: rem(20px) rem(40px);
+        white-space: nowrap;
+    }
+    &:hover {
+        cursor: pointer;
+        background-color: $primary-background-hover-on-secondary-color;
+    }
+}
+.option-btn {
+    display: none;
+}
+.chnage-status-container {
+    background-color: rgba(168, 168, 168, 0.658);
+    border: rem(2px) solid black;
+    .status {
+        cursor: pointer;
+        text-align: center;
+        display: block;
+        &:hover {
+            background-color: rgba(144, 144, 144, 0.534);
+        }
+        padding: rem(20px);
+        width: 100%;
+        color: #fff;
+    }
+}
+
+.react-datepicker-wrapper{
+    height: 100%;
+    div{
+        height: 100%;
+    }
+}
+.react-datepicker-popper{
+    padding-top: 0px !important;
+}

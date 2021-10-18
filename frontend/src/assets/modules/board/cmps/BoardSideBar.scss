@@ -1,0 +1,53 @@
+.side-bar-container {
+    background-color: $grey-background-color;
+    padding: rem(12px) rem(16px) rem(0px) rem(16px);
+    .workspace-title {
+        height: rem(40px);
+        border-radius: rem(4px);
+        border: rem(1px) solid $ui-border-color;
+        margin-block-end: rem(18px);
+        user-select: none;
+        padding: rem(6px);
+        & span.letter {
+            position: relative;
+            & span {
+                font-size: rem(19px);
+                background-color: rgb(242, 121, 242);
+                color: #fff;
+                width: rem(24px);
+                height: rem(24px);
+                text-align: center;
+                line-height: rem(25px);
+                border-radius: rem(10px);
+                padding: rem(2px);
+                box-sizing: content-box;
+            }
+            & svg {
+                position: absolute;
+                font-size: rem(16px);
+                bottom: rem(-5px);
+                right: rem(-5px);
+                background-color: #fff;
+                border-radius: 50%;
+            }
+        }
+        &:hover {
+            cursor: pointer;
+        }
+        & > span:nth-child(2) {
+            margin-block-start: rem(5px);
+            white-space: nowrap;
+            font-weight: 700;
+            margin-left: rem(8px);
+            font-size: rem(18px);
+        }
+    }
+    .btns-container {
+        button {
+            height: rem(32px);
+        }
+    }
+    .list {
+        padding: rem(0px) rem(16px) rem(16px) rem(0px);
+    }
+}

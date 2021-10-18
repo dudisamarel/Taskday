@@ -1,0 +1,13 @@
+.group-title {
+    padding: rem(3px);
+    border: rem(1px) dotted transparent;
+    &:hover {
+        border: rem(1px) dotted lightgray;
+    }
+}
+.group-title-edit {
+    font-size: rem(16px);
+    padding: rem(3px);
+    padding-right: rem(150px);
+    border: rem(1px) dotted lightgray;
+}

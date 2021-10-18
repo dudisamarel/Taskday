@@ -1,0 +1,23 @@
+.main-nav-top-logo-container {
+    padding: rem(8px);
+    min-width: rem(35px);
+    .logo {
+        margin-block-start: rem(1px);
+        cursor: pointer;
+    }
+    .option {
+        margin-block-start: rem(20px);
+        color: #dbdbdb;
+        cursor: pointer;
+    }
+    .notification {
+        margin-block-start: rem(20px);
+        cursor: pointer;
+        color: #dbdbdb;
+    }
+    .inbox {
+        margin-block-start: rem(20px);
+        color: #dbdbdb;
+        cursor: pointer;
+    }
+}

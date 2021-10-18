@@ -1,0 +1,13 @@
+.basic-small-button{
+    border-radius: 4px 0 0 4px ;
+    background-color: $primary-color;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 4px 12px !important;
+    height: 32px;
+    line-height: 24px;
+}
+.basic-small-button:hover{
+    background-color:$primary-hover-color;
+}

@@ -1,0 +1,24 @@
+.board-list-navigate-preview-wrapper {
+    padding: rem(8px);
+    cursor: pointer;
+    .disable-link {
+        pointer-events: none;
+    }
+    .link {
+        span {
+            align-self: center;
+        }
+        Button {
+            &:hover {
+                background: none;
+            }
+        }
+        width: 90%;
+    }
+    .options-btn {
+        cursor: pointer;
+        &:hover {
+            background-color: rgb(235, 231, 231);
+        }
+    }
+}

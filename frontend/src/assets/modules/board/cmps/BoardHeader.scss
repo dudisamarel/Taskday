@@ -1,0 +1,77 @@
+.board-header-content-wrapper {
+    max-height: 20vh;
+    .board-header-view-bar {
+        padding: rem(16px) rem(0px) rem(16px) rem(0px);
+        .monday-header {
+            button {
+                padding: rem(1.5px);
+                margin-inline-end: rem(15px);
+            }
+        }
+    }
+    .board-title {
+        font-size: rem(30px);
+        padding: rem(3px);
+        border: rem(1px) solid transparent;
+        &:hover {
+            border: rem(1px) dotted lightgray;
+        }
+    }
+    .board-title-edit {
+        font-size: rem(30px);
+        font-weight: bold;
+        padding: rem(3px);
+        width: 40vw;
+        border: rem(1px) dotted lightgray;
+    }
+    #standard-basic {
+        &:hover {
+            cursor: pointer;
+        }
+        &:focus {
+            cursor: auto;
+        }
+    }
+
+    .user-list-container {
+        margin-top: rem(10px);
+        font-size: rem(13px);
+        max-width: rem(150px);
+        background-color: white;
+        box-shadow: 0 4px 17px 6px rgb(184, 184, 184);
+        border-radius: rem(8px);
+        padding: rem(10px);
+        input {
+            width: 100%;
+        }
+        .user-list {
+            max-height: rem(100px);
+            overflow-y: scroll;
+            button {
+                width: 100%;
+                font-family: "Oswald", sans-serif;
+                color: rgb(88, 88, 88);
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                padding: rem(10px);
+            }
+        }
+    }
+
+    .activities-container {
+        overflow-y: scroll;
+       color: rgb(139, 139, 139);
+        max-height: rem(150px);
+        margin-top: rem(10px);
+        max-width: rem(300px);
+        background-color: white;
+        box-shadow: 0 4px 17px 6px rgb(184, 184, 184);
+        border-radius: rem(8px);
+        padding: rem(10px);
+        span:hover {
+            background-color: rgb(224, 224, 224);
+            cursor: context-menu;
+        }
+    }
+}

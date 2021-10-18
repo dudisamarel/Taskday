@@ -1,0 +1,18 @@
+.board-list-navigate-wrapper {
+    margin-block-start: rem(30px);
+    .board-list-container {
+        padding-block-start: rem(16px);
+        button {
+            padding: rem(5px);
+        }
+        span {
+            margin-inline-start: rem(5px);
+        }
+    }
+    .active {
+        background-color: $primary-selected-color;
+    }
+    .span-active {
+        color:$primary-color ;
+    }
+}
