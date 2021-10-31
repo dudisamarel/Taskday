@@ -9,21 +9,19 @@ export const BoardNavigationList = ({ boards, msg }) => {
 
   const onRemoveBoard = async (boardId) => {
     try {
-      const res = await boardService.remove(boardId); // return id of deleted
+      const res = await boardService.remove(boardId);
       dispatch(removeBoard(res));
-      toasting(1, "Removed board successfully")
+      toasting(1, "Removed board successfully");
     } catch (err) {
-      toasting(0, err, 2000)
+      return toasting(0, err, 2000);
     }
   }
 
+
   return (
-    <div className="board-list-navigate-wrapper">
-      <div className="spacer"></div>
-
-
+    <div className="sidebar-boardlist-container ">
       {boards && (
-        <div className="board-list-container flex column align-start ">
+        <div className="board-list-container flex column  ">
           {boards.map((board) => {
             return (
               <BoardNavigationPreview
@@ -40,9 +38,9 @@ export const BoardNavigationList = ({ boards, msg }) => {
         (msg ? (
           <span>{msg}</span>
         ) : (
-          <div className="flex column" style={{ padding: "10px" }}>
-            <span>Workspace is empty</span>
-            <span>Create or add boards</span>
+          <div className="flex column align-center">
+            <span>Workspace is empty.</span>
+            <span>Create or add boards!</span>
           </div>
         ))}
     </div>

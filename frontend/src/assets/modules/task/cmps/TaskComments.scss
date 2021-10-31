@@ -1,26 +1,30 @@
-.task-comments-wrapper {
-    margin: 1.25rem;
+.comment {
+    width: 40vw;
+    margin: 1.25rem 0;
     padding: rem(10px);
     border: rem(1px) solid lightgrey;
     border-radius: 10px;
-    .upper-card-container {
-        align-self: flex-start;
-        padding: rem(20px) rem(20px) rem(0px) rem(20px);
-        img {
-            vertical-align: middle;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-        h4{
-            padding: rem(13px);
-        }
+    div,
+    h4,
+    button {
+        margin-block-end: rem(20px);
     }
-    .html-content-wrapper {
-        margin-left: 25px;
-        padding: rem(15px) rem(15px) rem(15px) rem(45px);
-        &span {
-            max-width: rem(200px);
-        }
+    h4 {
+        font-size: 20px;
+    }
+    .text {
+        width: 100%;
+        height: rem(55px);
+    }
+    p {
+        margin: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    button {
+        border: 1px solid black;
+        background-color: rgb(211, 7, 7);
+        color: white;
+        padding: rem(10px);
     }
 }

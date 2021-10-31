@@ -1,5 +1,5 @@
-const keys = require('../keys.js')
+const { mongoKey } = require('../keys.js')
 module.exports = {
-  'dbURL': keys.mongoKey
+  'dbURL': mongoKey
 }
 

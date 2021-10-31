@@ -16,10 +16,8 @@ import {
   loadBoards,
 } from "../../../store/actions/boardActions";
 import { TaskUpdates } from "../../task/cmps/TaskUpdates";
-import { MainNav } from "../../index";
 import emptypage from "../../../assets/imgs/emptypage.png";
 import { userService } from "../../user/service/userService";
-import { utilService } from "../../../shared";
 import { addActivity } from "../../../shared/services/activityService";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -35,7 +33,7 @@ export const Board = ({ match }) => {
   const [filter, setFilter] = useState(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [sidebarToggler, setSidebarToggler] = useState(true);
 
 
   useEffect(() => {
@@ -49,27 +47,35 @@ export const Board = ({ match }) => {
   }, [])
 
   useEffect(() => {
+    boardService.query(filter).then((res) => {
+      dispatch(loadBoards(res))
+    });
+  }, [filter, dispatch])
+
+  useEffect(() => {
     if (!loading) {
-      boardService.query(filter).then((res) => {
+      boardService.query().then((res) => {
         dispatch(loadBoards(res));
         setTimeout(() => setLoading(true), 2000)
       }).catch(err => toasting(0, err))
     }
-  }, [filter, dispatch, loading])
+  }, [dispatch, loading])
 
 
   useEffect(() => {
-    if (boards && boards.length !== 0) {
-      let boardId = match.params.boardId;
-      if (boardId && (!currBoard || boardId !== currBoard._id)) {
-        boardService.getById(boardId).then(board => {
-          dispatch(loadBoard(board));
-        }).catch(err => {
-          toasting(0, err)
-        });
-      } else if (!currBoard) {
+    let boardId = match.params.boardId;
+    if (!boards || boards?.length === 0) return
+    if (currBoard && currBoard._id === boardId) return
+    if (boardId) {
+      boardService.getById(boardId).then(board => {
+        dispatch(loadBoard(board));
+      }).catch(err => {
+        toasting(0, err)
+      });
+    }
+    else {
+      if (!currBoard)
         dispatch(loadBoard(boards[0]));
-      }
     }
   }, [boards, match.params, dispatch, currBoard]);
 
@@ -113,8 +119,6 @@ export const Board = ({ match }) => {
     setTask(task);
     setToggleUpdates(true);
   };
-  // var className;
-  // toggleUpdates? className="50%" : className="100%";
 
   return <Fragment>
 
@@ -130,83 +134,121 @@ export const Board = ({ match }) => {
       draggable
       pauseOnHover
     />
+
+
     {loading ? (
-      <div>
-        <div className="board-layout flex">
+      <div className="board-layout flex">
 
-          {/* Add Board Popup */}
-
-          <PopUpModal
-            toggle={!modal}
-            toggleModal={toggleModal}
-            popup={classes.popup}
-            isDark
+        <PopUpModal
+          toggle={!toggleUpdates}
+          toggleModal={(ev) => {
+            ev.stopPropagation()
+            setToggleUpdates(false)
+          }}
+        >
+          <CSSTransition
+            in={toggleUpdates}
+            timeout={500}
+            classNames="comments-wrapper"
+            unmountOnExit
+            onEnter={() => setToggleUpdates(true)}
+            onExited={() => setToggleUpdates(false)}
           >
-            <CSSTransition
-              in={modal}
-              timeout={300}
-              classNames="add-board-container"
-              unmountOnExit
-              onEnter={() => setModal(true)}
-              onExited={() => setModal(false)}
-            >
-              <BoardAdd
-                types={[
-                  "Employees",
-                  "Campaigns",
-                  "Projects",
-                  "Creatives",
-                  "Clients",
-                  "Tasks",
-                ]}
-                onAdd={onAddBoard}
-                toggleModal={toggleModal}
-              />
-            </CSSTransition>
-          </PopUpModal>
+            <TaskUpdates
+              inAnim={toggleUpdates}
+              user={user}
+              task={task}
+              onEditBoard={onEditBoard}
+              close={() => setToggleUpdates(false)}
+            />
+          </CSSTransition>
+        </PopUpModal>
+
+        <PopUpModal
+          toggle={!modal}
+          toggleModal={toggleModal}
+          popup={classes.popup}
+          isDark
+        >
+          <CSSTransition
+            in={modal}
+            timeout={300}
+            classNames="add-board-container"
+            unmountOnExit
+            onEnter={() => setModal(true)}
+            onExited={() => setModal(false)}
+          >
+            <BoardAdd
+              types={[
+                "Employees",
+                "Campaigns",
+                "Projects",
+                "Creatives",
+                "Clients",
+                "Tasks",
+              ]}
+              onAdd={onAddBoard}
+              toggleModal={toggleModal}
+            />
+          </CSSTransition>
+        </PopUpModal>
+
+        <div className={"half-circle" + (!sidebarToggler ? " closed" : ' opened')}
+          onClick={() => {
+            console.log("ccc");
+            setSidebarToggler(!sidebarToggler)
+          }}
+        >  <i
+            className={"arrow " + (!sidebarToggler ? "right" : 'left')} />
+        </div>
+
+        <CSSTransition
+          in={sidebarToggler}
+          appear={true}
+          timeout={500}
+          classNames="sidebar-container"
+          unmountOnExit
+          onEnter={() => setSidebarToggler(true)}
+          onExited={() => setSidebarToggler(false)}
+        >
+          <BoardSideBar
+            toggleModal={toggleModal}
+            boards={boards} setFilter={setFilter}
+            userfullname={user.fullname}
+          />
+        </CSSTransition>
 
 
-          <MainNav />
-
-
-          <BoardSideBar toggleModal={toggleModal} boards={boards} setFilter={setFilter}></BoardSideBar>
-          {(boards && boards.length > 0 ? (
-            <div className="flex">
-              <div className="board-container flex column ">
-                <BoardHeader
-                  board={currBoard}
+        {(boards && boards.length > 0 ? (
+          <div className="board-container-wrapper">
+            <div className="board-container flex column ">
+              <BoardHeader
+                board={currBoard}
+                onEditBoard={onEditBoard}
+              ></BoardHeader>
+              {currBoard ? (
+                <BoardPreview
                   onEditBoard={onEditBoard}
-                ></BoardHeader>
-                {currBoard ? (
-                  <BoardPreview
-                    onEditBoard={onEditBoard}
-                    board={currBoard}
-                    groups={currBoard.groups}
-                    onOpenUpdates={onOpenUpdates}
-                    toggleUpdates={toggleUpdates}
-                  />
-                ) : <h1>Not found</h1>}
-                {toggleUpdates && (
-                  <TaskUpdates
-                    task={task}
-                    onEditBoard={onEditBoard}
-                    close={() => setToggleUpdates(false)}
-                  />
-                )}
-              </div>
-            </div>
-          ) : (
-            <div className="emptypage-logo-wrapper">
-              <div className="emptypage-img-container">
-                <img src={emptypage} alt="icon"></img>
-              </div>
-            </div>
-          ))}
-        </div >
+                  board={currBoard}
+                  groups={currBoard.groups}
+                  onOpenUpdates={onOpenUpdates}
+                  toggleUpdates={toggleUpdates}
+                />
+              ) : <h1>Not found</h1>}
 
-      </div>
-    ) : <div className="flex align-center justify-center" style={{ height: '100vh' }}>
+            </div>
+          </div>
+        ) : (
+          <div className="emptypage-logo-wrapper">
+            <div className="emptypage-img-container">
+              <img src={emptypage} alt="icon"></img>
+            </div>
+          </div>
+        ))}
+      </div >
+
+    ) : <div className="flex align-center justify-center" style={{ height: '100%' }}>
       <RotateLoader color={'#0398fc'} size={30} margin={40}></RotateLoader>
     </div>}
-  </Fragment>
+  </Fragment >
 };

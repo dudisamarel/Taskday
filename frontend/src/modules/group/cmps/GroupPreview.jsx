@@ -37,42 +37,44 @@ export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
   return (
     <div style={{ marginBottom: "30px" }}>
       <div className="grid-tasks-layout" style={{ marginBottom: "5px" }}>
-        {/* <div className="grid-tasks-layout" style={{ marginBottom: "5px" }}> */}
-        <Popper
-          button={<KeyboardArrowDownIcon />}
-          popper={
-            <div className="flex column edit-menu" >
-              <button
-                onClick={(ev) => {
-                  ev.stopPropagation();
-                  onRemoveGroup(group._id);
-                }}
-              >
-                <DeleteForever /> Delete
-              </button>
-              <button onClick={() => setToggleName(!toggleName)}><EditIcon /> Rename</button>
+        <div className="settings " >
+          <Popper
+            button={<div className="flex align-center">
+              <KeyboardArrowDownIcon />
             </div>
-          }
-        />
-        <div ref={domNode}>
+            }
+            popper={
+              <div className="flex column edit-menu" >
+                <button
+                  onClick={(ev) => {
+                    ev.stopPropagation();
+                    onRemoveGroup(group._id);
+                  }}
+                >
+                  <DeleteForever /> Delete
+                </button>
+                <button onClick={() => setToggleName(!toggleName)}><EditIcon /> Rename</button>
+              </div>
+            }
+          />
+        </div>
+        <div ref={domNode} className=" title group-title ellipsis">
           {toggleName ? (
             <span
-              className="group-title"
               onClick={() => setToggleName(!toggleName)}
             >
               {groupTitle}
             </span>
           ) : (
-            <div>
-              <input
-                className="group-title-edit"
-                type="text"
-                name="title"
-                onChange={inputHandler}
-                value={groupTitle}
-                ref={titleRef}
-              />
-            </div>
+            <input
+              style={{ width: '100%' }}
+              className="group-title-edit "
+              type="text"
+              name="title"
+              onChange={inputHandler}
+              value={groupTitle}
+              ref={titleRef}
+            />
           )}
         </div>
         <span className="person">Person</span>

@@ -60,7 +60,6 @@ class RichTextEditor extends React.Component {
   onSumbit = (markup) => 
   {
     this.props.onAddComment(markup)
-    this.props.switchReachTextField()
   }
 
   render() {
@@ -98,13 +97,13 @@ class RichTextEditor extends React.Component {
               handleKeyCommand={this.handleKeyCommand}
               keyBindingFn={this.mapKeyToEditorCommand}
               onChange={this.onChange}
-              placeholder="Tell a story..."
+              placeholder="Update me..."
               ref="editor"
               spellCheck={true}
             />
           </div>
         </div>
-        <Button onClick={() => this.onSumbit(markup)}>Update</Button>
+        <button className="update-btn" onClick={() => this.onSumbit(markup)}>Update</button>
       </>
     );
   }

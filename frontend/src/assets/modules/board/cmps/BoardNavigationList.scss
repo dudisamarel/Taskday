@@ -1,10 +1,5 @@
-.board-list-navigate-wrapper {
-    margin-block-start: rem(30px);
+.sidebar-boardlist-container {
     .board-list-container {
-        padding-block-start: rem(16px);
-        button {
-            padding: rem(5px);
-        }
         span {
             margin-inline-start: rem(5px);
         }
@@ -13,6 +8,19 @@
         background-color: $primary-selected-color;
     }
     .span-active {
-        color:$primary-color ;
+        color: $primary-color;
+    }
+    .side-boardlist-preview-container {
+        display: flex;
+        padding: rem(8px);
+        cursor: pointer;
+        a {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+        }
+        .link {
+            width: 90%;
+        }
     }
 }

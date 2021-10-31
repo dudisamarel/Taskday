@@ -33,9 +33,10 @@ async function save(board) {
     }
 }
 async function remove(id) {
+    //   return httpService.delete(`board/${id}`).then(()=> id)
     try {
-        await httpService.delete(`board/${id}`)
-        return id;
+        const res =  await httpService.delete(`board/${id}`)
+        return res;
     }
     catch (err) {
         throw err.message

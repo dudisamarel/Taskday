@@ -36,7 +36,8 @@ export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {
     onEditBoard({ type: activitesActions.REMOVE_TASK, task: taskToDelete });
   };
   const onAddTask = () => {
-  //ADD TASK
+    //ADD TASK
+    if (!taskToAdd.title) return
     const copyTask = { ...taskToAdd };
     copyTask._id = utilService.makeId();
     copyTask.endDate = new Date();
@@ -72,7 +73,8 @@ export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {
               );
             })}
             {provided.placeholder}
-            <div className="flex">
+            <div className=" add-container">
+              <div></div>
               <input
                 onChange={inputHandler}
                 type="text"
@@ -81,6 +83,7 @@ export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {
                 ref={addInput}
               />
               <button onClick={() => onAddTask()}>Add</button>
+              <div className="last"></div>
             </div>
           </div>
         )}

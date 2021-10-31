@@ -39,13 +39,18 @@ async function getById(id) {
     }
 }
 async function remove(id, userId) {
-    const collection = await dbService.getCollection('board')
-    const board = await collection.findOne({ '_id': ObjectId(id) })
-    if (ObjectId(userId).equals(board.ownedBy)) {
-        await collection.deleteOne({ '_id': ObjectId(id) })
-        return board._id
+    try {
+        const collection = await dbService.getCollection('board')
+        const board = await collection.findOne({ '_id': ObjectId(id) })
+        if (ObjectId(userId).equals(board.ownedBy)) {
+            await collection.deleteOne({ '_id': ObjectId(id) })
+            return board._id
+        }
+        else throw Error('Denied! Your\'e not the owner of the board')
     }
-    else throw Error('Denied! Your\'e not the owner of the board')
+    catch (err) {
+        throw err
+    }
 }
 
 async function update(board) {

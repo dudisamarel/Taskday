@@ -1,13 +1,41 @@
 .group-title {
-    padding: rem(3px);
+    width: 100%;
+    white-space: pre;
     border: rem(1px) dotted transparent;
     &:hover {
         border: rem(1px) dotted lightgray;
     }
+    .group-title-edit {
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+        border: rem(1px) dotted rgb(138, 137, 137);
+    }
 }
-.group-title-edit {
-    font-size: rem(16px);
-    padding: rem(3px);
-    padding-right: rem(150px);
-    border: rem(1px) dotted lightgray;
+
+.grid-tasks-layout {
+    .settings {
+        margin-inline-end: rem(3px);
+        background-color: $primary-color;
+        border-radius: 75%;
+        border: 1px solid transparent;
+
+        color: white;
+        &:hover {
+            border: 1px solid $primary-color;
+            color: $primary-color;
+            background-color: white;
+        }
+    }
+    span {
+        font-weight: bold;
+    }
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: rem(26px) minmax(rem(200px), auto) rem(84.1px) rem(120px) rem(120px) rem(5px);
+    grid-template-areas: "settings title person status date empty";
+    align-items: center;
+    grid-gap: rem(2px);
 }

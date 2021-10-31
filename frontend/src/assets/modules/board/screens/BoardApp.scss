@@ -1,11 +1,62 @@
+.board-container-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: auto;
+}
+.arrow {
+    border: solid black;
+    border-width: 0 rem(3px) rem(3px) 0;
+    padding: rem(5px);
+}
+.half-circle {
+    .right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        margin-inline-end: rem(8px);
+        transition: all 0.5s;
+    }
+    .left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+        margin-inline-start: rem(5px);
+        transition: all 0.5s;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    width: rem(25px);
+    height: rem(40px);
+    background-color: white;
+    border-radius: 0 rem(100px) rem(100px) 0;
+    border: solid gray;
+    border-width: rem(3px) rem(3px) rem(3px) 0;
+    &:hover {
+        box-shadow: 1px 0 7px 3px #b1b0b0;
+    }
+}
+.opened {
+    left: 150px;
+    @include from-mobile-layout {
+        left: 200px;
+    }
+    transition: all 0.5s;
+}
+.closed {
+    left: 0;
+    transition: all 0.5s;
+}
 .board-layout {
-    height: 100vh;
+    height: 100%;
+
     .board-container {
+        position: absolute;
+        height: 100%;
+        width: 100%;
         color: $primary-text-color;
         padding: rem(14px) rem(30px) rem(0px) rem(30px);
-        ul {
-            padding: 0;
-        }
     }
     .emptypage-logo-wrapper {
         display: flex;
@@ -38,8 +89,6 @@
         }
         &-exit-active {
             opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 1000ms, transform 1000ms;
         }
         box-shadow: rgb(28, 36, 44) rem(0px) rem(20px) rem(30px) rem(-10px);
         padding: rem(20px);
@@ -52,8 +101,11 @@
         background-color: white;
         .radio-group {
             display: flex;
-            flex-direction: row;
+            @include from-mobile-layout {
+                flex-direction: row;
+            }
         }
+
         .btn-add {
             background-color: rgb(169, 170, 170);
             color: white;

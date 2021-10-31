@@ -11,6 +11,8 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
     description: "Hello this is generic description, change me please",
   });
 
+  const [disabled, setDisabled] = useState(false);
+
   const inputHandler = (ev) => {
     const { value } = ev.target;
     const targetName = ev.target.name;
@@ -22,13 +24,16 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
   return (
     <div className="flex column align-center add-board-container">
       <h1>Create board</h1>
-      <input
-        type="text"
-        name="title"
-        placeholder="Board name..."
-        value={board.title}
-        onChange={inputHandler}
-      />
+
+      <div>
+        <input
+          type="text"
+          name="title"
+          placeholder="Board name..."
+          value={board.title}
+          onChange={inputHandler}
+        />
+      </div>
 
 
       <div className="close-container" onClick={(ev) => {
@@ -57,14 +62,17 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
           );
         })}
       </RadioGroup>
-        <button
-          className="btn-add"
-          onClick={(ev) => {
-            onAdd(board, ev);
-          }}
-        >
-          Create
-        </button>
-      </div>
-      );
+      <button
+        disabled={disabled}
+        className="btn-add"
+        onClick={(ev) => {
+          console.log(disabled);
+          onAdd(board, ev);
+          setDisabled(true);
+        }}
+      >
+        Create
+      </button>
+    </div>
+  );
 };

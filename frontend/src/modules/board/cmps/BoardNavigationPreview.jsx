@@ -6,45 +6,42 @@ import { useHistory, useParams } from "react-router";
 import { useState } from "react";
 
 export const BoardNavigationPreview = ({ board, onRemoveBoard, boards }) => {
-  const history = useHistory();
   let { boardId } = useParams();
+  const history = useHistory();
   if (!boardId) boardId = boards[0]._id;
   const [RemoveIcon, setRemoveIcon] = useState(<DeleteOutlineIcon />);
   //added class for scss
-  let className = "flex justify-space-between align-center side-bar-btns-width";
-  let spanAndIconClassName = "",
-    disableLink = "";
+  let className = "";
+  let spanAndIconClassName = ""
   if (boardId === board._id) {
     className += " active";
     spanAndIconClassName += " span-active";
-    disableLink += " disable-link";
   }
 
   return (
-    <section className={"board-list-navigate-preview-wrapper " + className}>
+    <section className={"side-boardlist-preview-container flex align-center justify-space-between" + className}>
       <Link
         className={
-          "link flex align-center" + spanAndIconClassName + disableLink
+          spanAndIconClassName
         }
         to={`/board/${board._id}`}
       >
-        <DashboardOutlinedIcon></DashboardOutlinedIcon>
         <span className={spanAndIconClassName}>
-          {board.title.length > 15
-            ? board.title.slice(0, 15) + "..."
-            : board.title}
+          { board.title}
         </span>
-      </Link>
+        </Link >
       <div
+        className={"delete-btn " + spanAndIconClassName}
         onMouseEnter={() => setRemoveIcon(<DeleteForeverIcon />)}
         onMouseLeave={() => setRemoveIcon(<DeleteOutlineIcon />)}
-        className={"options-btn " + spanAndIconClassName}
         onClick={() => {
-          onRemoveBoard(board._id).then(() => history.push("/board"));
+          onRemoveBoard(board._id).then(() => {
+            history.push("/board");
+          }).catch(err => console.log(err));
         }}
-      >
+        >
         {RemoveIcon}
       </div>
-    </section>
+    </section >
   );
 };

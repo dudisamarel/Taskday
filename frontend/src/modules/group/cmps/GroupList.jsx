@@ -28,9 +28,9 @@ export const GroupList = ({ groups, board, onEditBoard, onOpenUpdates, toggleUpd
       onEditBoard();
     }
   };
-  var width = toggleUpdates ? '60% ' : '100%';
+  var width = toggleUpdates ? "width-changed" : "";
   return (
-    <section className="group-list-wrapper" style={{ maxWidth: width }}>
+    <section className={`group-list-wrapper ${width}`}>
       <DragDropContext onDragEnd={onDragEndHandler}>
         {groups &&
           groups.map((group) => {

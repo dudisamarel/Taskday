@@ -1,13 +1,33 @@
 .task-grid {
-    background-color: $grey-background-color;
+    background-color: white;
     display: grid;
-    grid-template-columns: rem(26px) minmax(50px , 60vw) rem(84.1px) rem(120px) rem(120px);
-    // grid-template-columns: 0.026fr minmax(200px ,500px) 0.0841fr 0.12fr 0.12fr ;
-    // grid-template-columns: 0.026fr 0.612fr 0.0841fr 0.12fr 0.12fr ;
+    margin-block-end: rem(2px);
+    grid-template-columns: rem(26px) minmax(rem(200px), auto) rem(84.1px) rem(120px) rem(120px) rem(5px);
     align-items: center;
-    grid-gap: rem(5px);
+    grid-gap: rem(2px);
+    .grid-element {
+        width: 100%;
+        height: 100%;
+        background-color: $grey-background-color;
+        &:last-child {
+            background-color: $primary-background-hover-on-secondary-color;
+        }
+    }
+    .options-container {
+        opacity: 0;
+        background-color: white;
+        svg {
+            background-color: $grey-background-color;
+            border-radius: 25%;
+            border: 2px solid transparent;
+            &:hover {
+                background-color: white;
+                border: 2px solid black;
+            }
+        }
+    }
     .task-title {
-        align-self: center;
+        padding: 0 rem(20px);
     }
     .main-status {
         padding: rem(20px) rem(40px);
@@ -15,12 +35,15 @@
     }
     &:hover {
         cursor: pointer;
-        background-color: $primary-background-hover-on-secondary-color;
+        .grid-element:not(:first-child) {
+            background-color: $primary-background-hover-on-secondary-color;
+        }
+        .options-container {
+            opacity: 1;
+        }
     }
 }
-.option-btn {
-    display: none;
-}
+
 .chnage-status-container {
     background-color: rgba(168, 168, 168, 0.658);
     border: rem(2px) solid black;
@@ -37,12 +60,12 @@
     }
 }
 
-.react-datepicker-wrapper{
+.react-datepicker-wrapper {
     height: 100%;
-    div{
+    div {
         height: 100%;
     }
 }
-.react-datepicker-popper{
+.react-datepicker-popper {
     padding-top: 0px !important;
 }

@@ -3,7 +3,6 @@ import { GroupList } from "../../group";
 
 export const BoardPreview = ({ groups, board, onEditBoard, onOpenUpdates , toggleUpdates }) => {
   return (
-    <section style={{maxHeight: '80vh'}}>
       <GroupList
         board={board}
         onOpenUpdates={onOpenUpdates}
@@ -11,6 +10,5 @@ export const BoardPreview = ({ groups, board, onEditBoard, onOpenUpdates , toggl
         groups={groups}
         toggleUpdates = {toggleUpdates}
       />
-    </section>
   );
 };

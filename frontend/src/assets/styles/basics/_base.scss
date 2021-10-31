@@ -3,20 +3,34 @@
 ::before {
   box-sizing: border-box;
 }
+input::-webkit-input-placeholder {
+  font-size: rem(14px);
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+input{
+  width: 100%;
+}
+#root {
+  height: 100%;
+}
 html {
-  touch-action: none;
-
-  font-size: 14px;
-  // @include from-mobile-layout {
-  //   font-size: 16px;
-  // }
+  overflow: hidden;
+  height: 100%;
+  font-size: 13px;
+  @include from-mobile-layout {
+    font-size: 16px;
+  }
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: rem(8px);
+    height: rem(8px);
   }
   ::-webkit-scrollbar-thumb {
     background: #bbd5ed;
-    border-radius: 10px;
+    border-radius: rem(8px);
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #c7dbe8;
@@ -24,10 +38,11 @@ html {
   ::-webkit-scrollbar-track {
     background: #f7f7f7;
     border-radius: 0px;
-    box-shadow: inset -2.1px 3.4px 1px 0px #ebebeb;
+    box-shadow: inset rem(-2.1px) rem(3.4px) rem(1px) 0px #ebebeb;
   }
 }
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: cereal, Arial, Helvetica, sans-serif;
@@ -47,9 +62,7 @@ button {
     outline: none;
   }
 }
-small {
-  font-size: 14px;
-}
+
 textarea {
   font: inherit;
   &:focus {
@@ -100,13 +113,7 @@ input {
   }
 }
 
-.grid-tasks-layout {
-  display: grid;
-  grid-template-columns: rem(26px) minmax(50px, 60vw) rem(84.1px) rem(120px) rem(120px);
-  grid-template-areas: "start title person status date last";
-  align-items: center;
-  grid-gap: rem(5px);
-}
+
 
 .edit-menu {
   border-radius: rem(8px);

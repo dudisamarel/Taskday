@@ -1,15 +1,19 @@
 import { BoardNavigationList } from "./BoardNavigationList";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
-import HomeIcon from "@material-ui/icons/Home";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useEffect, useState } from "react";
 import { Popper } from "../../../shared";
 import { right } from "@popperjs/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { userService } from "../../user/service/userService";
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import { useClickOutside } from "../../../shared/hooks/clickOutSide";
+import { Input } from '@mui/material';
 
-export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
+export const BoardSideBar = ({ boards, toggleModal, setFilter, userfullname }) => {
   const [filteredBoards, setFilteredBoards] = useState(boards);
 
   const [typeFilter, setTypeFilter] = useState({
@@ -21,7 +25,7 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
     "Tasks": false,
   });
 
-
+  const [searchToggler, setSearchToggler] = useState(false)
   const handleChange = (event) => {
     setTypeFilter({
       ...typeFilter,
@@ -36,7 +40,7 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
         filter.push(key)
     })
     setFilter(filter)
-  }, [typeFilter,setFilter])
+  }, [typeFilter, setFilter])
 
   useEffect(() => {
     setFilteredBoards(boards);
@@ -49,67 +53,89 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
     setFilteredBoards(boards.filter((board) => regex.test(board.title)));
   };
 
+  const doLogout = () => {
+    userService
+      .logout()
+      .then(() => {
+        window.location.assign(
+          '/sign'
+        )
+      })
+  };
+
+  let domNodeSearch = useClickOutside(() => {
+    if (searchToggler === true) {
+      setSearchToggler(false);
+    }
+    console.log("holla amigos")
+  });
 
   return (
-    <section className="side-bar-container flex column">
-      <div className="workspace-title flex row align-center">
-        <span className="letter flex">
-          <span>M</span>
-          <HomeIcon />
-        </span>
-        <span>Main workspace</span>
-      </div>
-      <div className="btns-container ">
-        <button
-          className="flex align-center side-bar-btns-width"
-          onClick={toggleModal}
-        >
-          <AddCircleOutlineOutlinedIcon></AddCircleOutlineOutlinedIcon> Add
-        </button>
-        <Popper
-          button={
-            <button className="flex align-center side-bar-btns-width">
-              <AddCircleOutlineOutlinedIcon></AddCircleOutlineOutlinedIcon>
-              Filters
+    <section className="flex column sidebar-container">
+      <div className="top-section">
+        <div className="username-container flex justify-space-between">
+          <span >{userfullname} </span>
+          <button onClick={doLogout} >
+            <LogoutIcon />
+          </button>
+        </div>
+        <div className="tools-container">
+          <button
+            className="flex align-center"
+            onClick={toggleModal}
+          >
+            <AddCircleOutlineOutlinedIcon style={{ marginInlineEnd: '4px' }} /> Add
+          </button>
+          <Popper
+            button={
+              <button className="flex align-center ">
+                <FilterAltOutlinedIcon style={{ marginInlineEnd: '2px' }} />
+                Filters
+              </button>
+            }
+            popper={
+              <div
+                className="flex column"
+                style={{ border: "2px solid black", backgroundColor: "white", padding: '5px' }}
+              >
+                <FormGroup>
+                  {Object.entries(typeFilter).map(([typeName, typeValue], idx) => {
+                    return <FormControlLabel
+                      key={idx}
+                      control={
+                        <Checkbox
+                          checked={typeValue}
+                          onChange={handleChange}
+                          name={typeName}
+                        />
+                      }
+                      label={typeName}
+                    />
+                  }
+                  )}
+                </FormGroup>
+              </div>
+            }
+            y={42}
+            disappearOnPopperClick={false}
+            placementChange={right}
+          ></Popper>
+          <div className="flex align-center search" ref={domNodeSearch}>
+            {searchToggler ? <Input
+              placeholder="Search..."
+              type="text"
+              onChange={inputHandler}
+              value={inputVal}
+
+            /> : <button className="flex align-center" onClick={() => { setSearchToggler(true) }}>
+              <SearchOutlinedIcon /> Search
             </button>
-          }
-          popper={
-            <div
-              className="flex column"
-              style={{ border: "2px solid black", backgroundColor: "white" ,padding:'5px'}}
-            >
-              <FormGroup>
-                {Object.entries(typeFilter).map(([typeName, typeValue], idx) => {
-                  return <FormControlLabel
-                    key={idx}
-                    control={
-                      <Checkbox
-                        checked={typeValue}
-                        onChange={handleChange}
-                        name={typeName}
-                      />
-                    }
-                    label={typeName}
-                  />
-                }
-                )}
-              </FormGroup>
-            </div>
-          }
-          y={42}
-          disappearOnPopperClick={false}
-          placementChange={right}
-        ></Popper>
-        <div className="flex side-bar-btns-width">
-          <SearchOutlinedIcon></SearchOutlinedIcon>
-          <input
-            placeholder="Search boards..."
-            type="text"
-            onChange={inputHandler}
-            value={inputVal}
-          />
+            }
+          </div>
         </div>
       </div>
+
+      <div className="spacer" />
 
       {boards && <BoardNavigationList
         boards={filteredBoards}

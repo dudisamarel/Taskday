@@ -1,35 +1,78 @@
 .board-header-content-wrapper {
-    max-height: 20vh;
-    .board-header-view-bar {
-        padding: rem(16px) rem(0px) rem(16px) rem(0px);
-        .monday-header {
-            button {
-                padding: rem(1.5px);
-                margin-inline-end: rem(15px);
+    background-color: white;
+    font-size: 10px;
+    padding: rem(10px) rem(0px) rem(10px) rem(0px);
+    svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .newitem-btn {
+        background-color: $primary-color;
+        color: white;
+        white-space: pre;
+        padding: rem(5px);
+    }
+    .filters-header {
+        width: 100px;
+        padding: rem(10px) rem(0px) rem(10px) rem(0px);
+        div,
+        button:not(:last-child) {
+            margin-inline-end: 10px;
+        }
+    }
+
+    .desc {
+        .ellipsis {
+            max-width: 40vw;
+            max-height: rem(50px);
+        }
+        margin: rem(20px) 0;
+    }
+    .header-options {
+        .activ,
+        .invite {
+            height: 100%;
+            margin-inline-start: rem(5px);
+            padding: rem(5px);
+        }
+    }
+    textarea {
+        border: 1px solid black;
+        width: 40vw;
+        height: rem(50px);
+        resize: none;
+    }
+    @include from-mobile-layout {
+        .header-options {
+            .activ,
+            .invite {
+                height: 100%;
+                margin-inline-start: rem(40px);
+                padding: rem(10px);
             }
         }
-    }
-    .board-title {
-        font-size: rem(30px);
-        padding: rem(3px);
-        border: rem(1px) solid transparent;
-        &:hover {
+        font-size: 1rem;
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+        .board-title {
+            font-size: rem(30px);
+            padding: rem(3px);
+            border: rem(1px) solid transparent;
+            &:hover {
+                border: rem(1px) dotted lightgray;
+            }
+        }
+        .board-title-edit {
+            font-size: rem(30px);
+            font-weight: bold;
+            padding: rem(3px);
             border: rem(1px) dotted lightgray;
         }
-    }
-    .board-title-edit {
-        font-size: rem(30px);
-        font-weight: bold;
-        padding: rem(3px);
-        width: 40vw;
-        border: rem(1px) dotted lightgray;
-    }
-    #standard-basic {
-        &:hover {
-            cursor: pointer;
-        }
-        &:focus {
-            cursor: auto;
+        .newitem-btn {
+            padding: rem(10px);
         }
     }
 
@@ -47,7 +90,9 @@
         .user-list {
             max-height: rem(100px);
             overflow-y: scroll;
+            overflow-x: hidden;
             button {
+                margin: 0;
                 width: 100%;
                 font-family: "Oswald", sans-serif;
                 color: rgb(88, 88, 88);
@@ -61,7 +106,7 @@
 
     .activities-container {
         overflow-y: scroll;
-       color: rgb(139, 139, 139);
+        color: rgb(139, 139, 139);
         max-height: rem(150px);
         margin-top: rem(10px);
         max-width: rem(300px);
