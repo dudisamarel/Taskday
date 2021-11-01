@@ -10,7 +10,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { userService } from "../../user/service/userService";
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import { useClickOutside } from "../../../shared/hooks/clickOutSide";
 import { Input } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 

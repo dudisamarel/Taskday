@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3f576ca0.chunk.css",
+    "main.js": "/static/js/main.5e904516.chunk.js",
+    "main.js.map": "/static/js/main.5e904516.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.93b4126f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.93b4126f.js.map",
+    "static/css/2.194f78b6.chunk.css": "/static/css/2.194f78b6.chunk.css",
+    "static/js/2.f6363b67.chunk.js": "/static/js/2.f6363b67.chunk.js",
+    "static/js/2.f6363b67.chunk.js.map": "/static/js/2.f6363b67.chunk.js.map",
+    "static/js/3.ac7c5667.chunk.js": "/static/js/3.ac7c5667.chunk.js",
+    "static/js/3.ac7c5667.chunk.js.map": "/static/js/3.ac7c5667.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.194f78b6.chunk.css.map": "/static/css/2.194f78b6.chunk.css.map",
+    "static/css/main.3f576ca0.chunk.css.map": "/static/css/main.3f576ca0.chunk.css.map",
+    "static/js/2.f6363b67.chunk.js.LICENSE.txt": "/static/js/2.f6363b67.chunk.js.LICENSE.txt",
+    "static/media/global.scss": "/static/media/Oswald-Light.5b37a8f3.ttf",
+    "static/media/emptypage.c08a4850.png": "/static/media/emptypage.c08a4850.png",
+    "static/media/register.0e844a37.png": "/static/media/register.0e844a37.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.93b4126f.js",
+    "static/css/2.194f78b6.chunk.css",
+    "static/js/2.f6363b67.chunk.js",
+    "static/css/main.3f576ca0.chunk.css",
+    "static/js/main.5e904516.chunk.js"
+  ]
+}
