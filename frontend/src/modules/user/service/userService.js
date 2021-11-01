@@ -60,7 +60,6 @@ function getUserById(id) {
     return axios.get(`${BASE_URL}/user/${id}`)
         .then(res => res.data)
         .then((user) => {
-            console.log('user found:', user);
             return user
         })
 }

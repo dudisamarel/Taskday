@@ -50,28 +50,17 @@
 }
 .board-layout {
     height: 100%;
-
+    .emptypage-img-container {
+        align-self: center;
+        width: 100%;
+        @include aspect-ratio(16, 9);
+    }
     .board-container {
         position: absolute;
         height: 100%;
         width: 100%;
         color: $primary-text-color;
         padding: rem(14px) rem(30px) rem(0px) rem(30px);
-    }
-    .emptypage-logo-wrapper {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        width: 100%;
-        .emptypage-img-container {
-            width: 900;
-            height: 600px;
-            margin: 0 auto;
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
     }
 
     .add-board-container {

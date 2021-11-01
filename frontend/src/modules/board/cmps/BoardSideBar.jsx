@@ -12,6 +12,7 @@ import { userService } from "../../user/service/userService";
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
 import { Input } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 export const BoardSideBar = ({ boards, toggleModal, setFilter, userfullname }) => {
   const [filteredBoards, setFilteredBoards] = useState(boards);
@@ -49,9 +50,12 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter, userfullname }) =
   const [inputVal, setInputVal] = useState("");
   const inputHandler = (ev) => {
     setInputVal(ev.target.value);
-    const regex = new RegExp(ev.target.value, "i");
-    setFilteredBoards(boards.filter((board) => regex.test(board.title)));
+
   };
+  useEffect(() => {
+    const regex = new RegExp(inputVal, "i");
+    setFilteredBoards(boards.filter((board) => regex.test(board.title)));
+  }, [inputVal, boards])
 
   const doLogout = () => {
     userService
@@ -63,12 +67,7 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter, userfullname }) =
       })
   };
 
-  let domNodeSearch = useClickOutside(() => {
-    if (searchToggler === true) {
-      setSearchToggler(false);
-    }
-    console.log("holla amigos")
-  });
+
 
   return (
     <section className="flex column sidebar-container">
@@ -120,12 +119,17 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter, userfullname }) =
             disappearOnPopperClick={false}
             placementChange={right}
           ></Popper>
-          <div className="flex align-center search" ref={domNodeSearch}>
+          <div className="flex align-center" >
             {searchToggler ? <Input
-              placeholder="Search..."
+              className="search"
+              label="Search"
               type="text"
               onChange={inputHandler}
               value={inputVal}
+              endAdornment={<button onClick={() => {
+                setSearchToggler(false)
+                setInputVal('')
+              }}><CloseIcon /></button>}
 
             /> : <button className="flex align-center" onClick={() => { setSearchToggler(true) }}>
               <SearchOutlinedIcon /> Search

@@ -28,7 +28,6 @@ export const InviteUsers = ({ board }) => {
     boardService.addMember(board, userId).then((res) => {
       dispatch(editBoard(res));
       dispatch(loadBoard(res));
-      console.log("adding user succeed" + res.members);
     })
   }
 

@@ -5,17 +5,37 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteForever from "@material-ui/icons/DeleteForever";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import { Status } from "./Status";
 import { Popper } from "../../../shared";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { bottom } from "@popperjs/core";
+import { useClickOutside } from "../../../shared/hooks/clickOutSide";
 export const TaskPreview = ({
   task,
   onRemoveTask,
   onEditBoard,
   onOpenUpdates,
 }) => {
+
+  const inputHandler = (ev) => {
+    setTempTitle(ev.target.value);
+  };
+
+  const onChangeTitle = () => {
+    if (task.title !== tempTitle) {
+      task.title = tempTitle;
+      onEditBoard();
+    }
+    setChangeTitleToggler(false)
+  }
+  const [changeTitleToggler, setChangeTitleToggler] = useState(false);
+  const titleRef = useRef(null);
+  const [tempTitle, setTempTitle] = useState(task.title)
+  useEffect(() => {
+    if (titleRef.current)
+      titleRef.current.focus()
+  }, [changeTitleToggler])
 
   const onEditStatus = (text, color) => {
     if (task.status.text === text && task.status.color === color) return;
@@ -31,7 +51,12 @@ export const TaskPreview = ({
     return `${monthNames[date.getUTCMonth()].slice(0, 3)}  ${date.getUTCDate()}`
   }
 
-
+  const changeTitleDom = useClickOutside(() => {
+    if (changeTitleToggler === true)
+      setChangeTitleToggler(false)
+    if (tempTitle !== task.title)
+      setTempTitle(task.title)
+  })
 
   const onEditDate = (date) => {
     task.endDate = date
@@ -54,15 +79,26 @@ export const TaskPreview = ({
             popper={
               <div className="flex column edit-menu">
                 <button onClick={() => onRemoveTask(task._id)}><DeleteForever /> Delete</button>
-                <button ><EditIcon /> Rename</button>
+                <button onClick={() => setChangeTitleToggler(true)}><EditIcon /> Rename</button>
               </div>
             }
           />
         </div>
         <div className="flex justify-space-between grid-element align-center task-title ">
-          <div className="ellipsis ">
-            <span >{task.title}</span>
+          {changeTitleToggler ? <div className="flex change-title " ref={changeTitleDom}
+          >
+            <input
+              onChange={inputHandler}
+              ref={titleRef}
+              value={tempTitle}
+            />
+            <DoneOutlineIcon color="primary" onClick={onChangeTitle} />
           </div>
+            : <div className="ellipsis ">
+              <span >{task.title}</span>
+            </div>
+
+          }
           <div
             className="flex align-center justify-center"
             onClick={() => onOpenUpdates(task)}

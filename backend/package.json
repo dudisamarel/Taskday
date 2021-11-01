@@ -4,6 +4,7 @@
   "description": "Monday app",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "server": "json-server --id _id --port 3030 --watch db/boardDB.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

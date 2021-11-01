@@ -1,7 +1,5 @@
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
-import FilterListOutlinedIcon from "@material-ui/icons/FilterListOutlined";
-import ImportExportIcon from "@material-ui/icons/ImportExport";
 import { utilService } from "../../../shared/services/utilService";
 import { Popper } from "../../../shared";
 import { InviteUsers } from "../../../shared/cmps/InviteUsers";
@@ -9,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
 import { Activities } from "./Activities";
 import { activitesActions } from "../../../shared/services/activityService";
-import SearchOutlined from "@material-ui/icons/SearchOutlined";
 
 export const BoardHeader = ({ board, onEditBoard }) => {
   const [descriptionInput, setDescriptionInput] = useState(board?.description);

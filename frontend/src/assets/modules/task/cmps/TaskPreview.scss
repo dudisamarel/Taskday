@@ -13,6 +13,20 @@
             background-color: $primary-background-hover-on-secondary-color;
         }
     }
+    .change-title {
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        svg {
+            margin-inline-start: rem(10px);
+            padding: rem(5px);
+            border: rem(1px) solid $primary-color;
+            &:hover {
+                background-color: $primary-color;
+                color: white;
+            }
+        }
+    }
     .options-container {
         opacity: 0;
         background-color: white;

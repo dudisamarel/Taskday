@@ -5,7 +5,6 @@ import { TaskComments } from "./TaskComments";
 export const TaskUpdates = ({ task, onEditBoard, close, user, inAnim }) => {
   const onAddComment = (comment) => {
     task.comments.unshift({ text: comment, _id: utilService.makeId(), user });
-    console.log(user);
     onEditBoard();
   };
   const onDeleteComment = (id) => {
@@ -23,7 +22,7 @@ export const TaskUpdates = ({ task, onEditBoard, close, user, inAnim }) => {
           x
         </button>
         <div className="ellipsis header">
-          <span>{task.title}</span>
+          <span>{task.title.charAt(0).toUpperCase() + task.title.slice(1)}</span>
         </div>
       </div>
       <div className="rich-text-editor-wrapper flex column">
@@ -35,8 +34,8 @@ export const TaskUpdates = ({ task, onEditBoard, close, user, inAnim }) => {
         task.comments.length === 0 ? (
           <span className="align-self-center">No updates yet...</span>
         ) : (
-          task.comments.map((task) => (
-            <TaskComments task={task} onDeleteComment={onDeleteComment} />
+          task.comments.map((comment) => (
+            <TaskComments key={comment._id} comment={comment} onDeleteComment={onDeleteComment} />
           ))
         )
       }

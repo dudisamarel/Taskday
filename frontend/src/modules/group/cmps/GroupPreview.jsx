@@ -13,8 +13,7 @@ export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
     board.groups = board.groups.filter((group) => group._id !== id);
     onEditBoard({ type: activitesActions.REMOVE_GROUP, group: groupToDelete });
   };
-  const titleRef = useRef(null);
-
+  
   const [toggleName, setToggleName] = useState(true);
   const [groupTitle, setGroupTitle] = useState(group.title);
   const inputHandler = (ev) => {
@@ -29,11 +28,12 @@ export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
       }
     }
   });
+  
+  const titleRef = useRef(null);
   useEffect(() => {
     if (titleRef.current)
       titleRef.current.focus()
   }, [toggleName])
-
   return (
     <div style={{ marginBottom: "30px" }}>
       <div className="grid-tasks-layout" style={{ marginBottom: "5px" }}>

@@ -195,7 +195,6 @@ export const Board = ({ match }) => {
 
         <div className={"half-circle" + (!sidebarToggler ? " closed" : ' opened')}
           onClick={() => {
-            console.log("ccc");
             setSidebarToggler(!sidebarToggler)
           }}
         >  <i
@@ -239,10 +238,8 @@ export const Board = ({ match }) => {
             </div>
           </div>
         ) : (
-          <div className="emptypage-logo-wrapper">
-            <div className="emptypage-img-container">
-              <img src={emptypage} alt="icon"></img>
-            </div>
+          <div className="emptypage-img-container">
+            <img src={emptypage} alt="icon"></img>
           </div>
         ))}
       </div >

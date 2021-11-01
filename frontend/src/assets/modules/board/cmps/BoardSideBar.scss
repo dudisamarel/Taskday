@@ -55,12 +55,18 @@
         }
     }
     .tools-container {
-     
-        button,
-        input {
+        button {
             margin-block-start: rem(10px);
             padding: rem(5px) 0;
             width: 100%;
+        }
+        .search {
+            input {
+                width: 80%;
+            }
+            button {
+                width: 20%;
+            }
         }
     }
 }

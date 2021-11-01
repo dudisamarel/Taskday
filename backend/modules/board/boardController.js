@@ -18,7 +18,6 @@ async function getBoards(req, res) {
         res.send(boards)
     }
     catch (err) {
-        console.log("err");
         res.send(err)
     }
 }
@@ -48,7 +47,6 @@ async function updateBoard(req, res) {
 async function addMemberToBoard(req, res) {
     try {
         const { board, memberId } = req.body
-        console.log(req.body);
         const updatedBoard = await boardService.addMember(board, memberId)
         return res.send(updatedBoard)
     }

@@ -66,7 +66,6 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
         disabled={disabled}
         className="btn-add"
         onClick={(ev) => {
-          console.log(disabled);
           onAdd(board, ev);
           setDisabled(true);
         }}

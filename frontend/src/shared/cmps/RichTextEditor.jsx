@@ -8,7 +8,6 @@ import {
 } from "draft-js";
 import "../../assets/shared/cmps/RichTextEditor.scss";
 import draftToHtml from "draftjs-to-html";
-import { Button } from "@material-ui/core";
 
 class RichTextEditor extends React.Component {
   constructor(props) {

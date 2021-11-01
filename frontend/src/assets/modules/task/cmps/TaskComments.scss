@@ -15,11 +15,19 @@
     .text {
         width: 100%;
         height: rem(55px);
+        overflow-x: hidden;
+        overflow-y: auto;
     }
-    p {
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         margin: 0;
         text-overflow: ellipsis;
-        overflow: hidden;
+        overflow-x: hidden;
     }
     button {
         border: 1px solid black;

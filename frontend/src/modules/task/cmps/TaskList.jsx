@@ -82,7 +82,7 @@ export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {
                 name="title"
                 ref={addInput}
               />
-              <button onClick={() => onAddTask()}>Add</button>
+              <button onMouseDown={() => onAddTask()}>Add</button>
               <div className="last"></div>
             </div>
           </div>

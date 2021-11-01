@@ -64,6 +64,22 @@ export const LoginSignup = () => {
       });
   };
 
+  const guestLogin = async (ev) => {
+    userService
+      .login({
+        username: "guest",
+        password: "guest",
+      })
+      .then((user) => {
+        setLoginCred({ username: "", password: "" });
+        setLoggedInUser(user);
+        history.push("/board");
+      })
+      .catch((err) => {
+        toasting(0, err)
+      });
+  };
+
   const doLogout = () => {
     userService
       .logout()
@@ -111,7 +127,7 @@ export const LoginSignup = () => {
 
 
   return mounted && (
-    <div>
+    <section className="background-div">
       <ToastContainer
         limit={2}
         position="bottom-center"
@@ -124,126 +140,124 @@ export const LoginSignup = () => {
         draggable
         pauseOnHover
       />
-      <section className="background-div">
-        <div className="register-wrapper flex">
-          <div className="border">
-            <div className="login-wrapper">
-              <div className="register-img-container">
-                <img src={register} alt="" />
-              </div>
-              {(loggedInUser ?
-                (
-                  <div className="login">
-                    <h1> Hello {loggedInUser.fullname}</h1>
-                    <button onClick={doLogout}>Logout</button>
-                  </div>
-                ) : (
-                  <div className="login">
-                    {logSignToggler ? (
-                      <div>
-                        <h1>Welcome to our Monday App</h1>
-                        <h4 className="continue">login to continue</h4>
-                      </div>
-                    ) : (
-                      <div>
-                        <h1>Join our Monday App</h1>
-                        <h4 className="continue">signup to continue</h4>
-                      </div>
-                    )}
-                    {logSignToggler ? (
-                      <form className="frm" onSubmit={doLogin}>
-                        {/* <input type="text" name="username" placeholder="Username" autoFocus /> */}
-                        <TextField
-                          style={{ width: "100%" }}
-                          variant="outlined"
-                          type="text"
-                          name="username"
-                          value={loginCred.username}
-                          onChange={onChangeHandler}
-                        />
-                        <br />
-                        <TextField
-                          style={{ width: "100%", margin: "10px 0px 20px 0px" }}
-                          name="password"
-                          type="password"
-                          variant="outlined"
-                          value={loginCred.password}
-                          onChange={onChangeHandler}
-                        />
-                        <br />
-                        <div className="flex align-senter">
-                          <button className="rounded" type="submit">
-                            Continue
-                          </button>
-                          <button
-                            onClick={() => {
-                              clearInputs();
-                              setLogSignToggler(false);
-                            }}
-                            className="register-btn"
-                            style={{ marginInlineStart: "20px" }}
-                          >
-                            {" "}
-                            Register Here
-                          </button>
-                        </div>
-                      </form>
-                    ) : (
-                      <div className="sign-up">
-                        <form className="flex column justify-center" onSubmit={doSignup}>
-                          <TextField
-                            style={{ margin: "5px 0px" }}
-                            type="text"
-                            name="fullname"
-                            variant="outlined"
-                            value={signupCred.fullname}
-                            onChange={onChangeHandler}
-                          />
-                          <TextField
-                            style={{ margin: "5px 0px" }}
-                            variant="outlined"
-                            type="text"
-                            name="username"
-                            value={signupCred.username}
-                            onChange={onChangeHandler}
-                          />
-                          <TextField
-                            style={{ margin: "5px 0px" }}
-                            variant="outlined"
-                            name="password"
-                            type="password"
-                            value={signupCred.password}
-                            onChange={onChangeHandler}
-                          />
-                          <button
-                            type="sumbit"
-                            className="regitser-button"
-                            style={{ marginBlockStart: "10px" }}
-                          >
-                            Continue
-                          </button>
-                          <hr />
-                          <h4>
-                            Already a member?{" "}
-                            <span
-                              onClick={() => {
-                                clearInputs();
-                                setLogSignToggler(true);
-                              }}
-                            >
-                              Sign In
-                            </span>
-                          </h4>
-                        </form>
-                      </div>
-                    )}
-                  </div>
-                ))}
-            </div>
-          </div>
+      <div className="first-level-wrapper">
+        <div className="img-container">
+          <img src={register} alt="office" />
         </div>
+        {(loggedInUser ?
+          (
+            <div className="flex column justify-space-around">
+              <h1> Hello {loggedInUser.fullname}</h1>
+              <button className="rounded" onClick={doLogout}>Logout</button>
+            </div>
+          ) : (
+            <div className="login">
+              <div className="flex justify-center">
+                {logSignToggler ? (
+                  <h1>Taskday</h1>
+                ) : (
+                  <h1>Join Taskday</h1>
+                )}
+              </div>
+              {logSignToggler ? (
+                <div>
+                  <TextField
+                    style={{ width: "100%", margin: "10px 0 0  0" }}
+                    variant="outlined"
+                    type="text"
+                    name="username"
+                    value={loginCred.username}
+                    onChange={onChangeHandler}
+                    label={"username"}
+                  />
+                  <br />
+                  <TextField
+                    style={{ width: "100%", margin: "10px 0 0 0 " }}
+                    name="password"
+                    type="password"
+                    variant="outlined"
+                    value={loginCred.password}
+                    onChange={onChangeHandler}
+                    label={"password"}
+                  />
+                  <div className="spacer" />
+                  <div className="flex column">
 
-      </section>
-    </div>
+                    <div className="login-buttons">
+                      <button
+                        onClick={() => {
+                          clearInputs();
+                          setLogSignToggler(false);
+                        }}
+                        className="register-btn"
+                      >
+                        Register Here
+                      </button>
+                      <button className="rounded" onClick={doLogin}>
+                        Continue
+                      </button>
+                    </div>
+                    <button className="guest-btn" onClick={guestLogin}>
+                      Login as a guest
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="sign-up">
+                  <form className="flex column justify-center" onSubmit={doSignup}>
+                    <TextField
+                      style={{ width: "100%", margin: " 10px  0 10px 0 " }}
+                      type="text"
+                      name="fullname"
+                      variant="outlined"
+                      value={signupCred.fullname}
+                      onChange={onChangeHandler}
+                      label={"Full name"}
+                    />
+                    <TextField
+                      style={{ width: "100%", margin: " 0  0 10px 0 " }}
+                      variant="outlined"
+                      type="text"
+                      name="username"
+                      value={signupCred.username}
+                      onChange={onChangeHandler}
+                      label={"username"}
+                    />
+                    <TextField
+                      style={{ width: "100%", margin: " 0  0 10px 0 " }}
+                      variant="outlined"
+                      name="password"
+                      type="password"
+                      value={signupCred.password}
+                      onChange={onChangeHandler}
+                      label={"password"}
+                    />
+                    <button
+                      type="sumbit"
+                      className="rounded"
+                    >
+                      Continue
+                    </button>
+                    <div className="spacer" />
+                    <h4>
+                      Already a member?
+                      <span
+                        className="signin-route-span"
+                        onClick={() => {
+                          clearInputs();
+                          setLogSignToggler(true);
+                        }}
+                      >
+                        Sign In
+                      </span>
+                    </h4>
+                  </form>
+                </div>
+              )}
+            </div>
+          ))}
+      </div>
+
+    </section>
   )
 };

@@ -11,7 +11,7 @@ const http = require('http').createServer(app)
 
 const session = expressSession({
     name: 'SessionCookie',
-    secret: 'coding is amazing',
+    secret: 'asdfsdf$#@dsafgdfaafdhfdahert234154v',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
@@ -58,9 +58,9 @@ app.use((err, req, res, next) => {
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3000/index.html/car/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow react-router to take it from there
-// app.get('/*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
-// })
+app.get('/**', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 const logger = require('./services/logger.service')
 const port = process.env.PORT || 3030

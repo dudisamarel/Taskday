@@ -1,16 +1,15 @@
 
-export const TaskComments = ({ task, onDeleteComment }) => {
+export const TaskComments = ({ comment, onDeleteComment }) => {
   return (
-    <div className="comment flex column  align-center" key={task._id}>
-      <h4>{task.user.fullname}</h4>
-      <div className="text ellipsis">
-        <span
-          dangerouslySetInnerHTML={{
-            __html: task.text
-          }}>
-        </span>
+    <div className="comment flex column  align-center" >
+      <h4>{comment.user.fullname}</h4>
+      <div className="text ellipsis"
+        dangerouslySetInnerHTML={{
+          __html: comment.text
+        }}>
+
       </div>
-      <button onClick={() => onDeleteComment(task._id)}>Delete</button>
+      <button onClick={() => onDeleteComment(comment._id)}>Delete</button>
     </div >
   )
 }
