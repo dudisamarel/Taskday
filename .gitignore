@@ -3,12 +3,12 @@
 # dependencies
 frontend/node_modules
 backend/node_modules
+backend/.gitignore
 /.pnp
 .pnp.js
 
-#secrets
-keys.js
-
+# secrets
+backend/keys.js
 
 # testing
 /coverage

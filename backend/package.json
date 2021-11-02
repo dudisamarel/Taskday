@@ -8,7 +8,7 @@
     "server": "json-server --id _id --port 3030 --watch db/boardDB.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tomer and Dudi",
+  "author": "Dudi Samarel",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",

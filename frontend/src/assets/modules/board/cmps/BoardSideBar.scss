@@ -2,7 +2,8 @@
     border-right: rem(1px) solid gray;
     flex: 0 0 auto;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     &-appear {
         width: 150px;
         @include from-mobile-layout() {

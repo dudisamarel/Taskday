@@ -20,30 +20,36 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        @media (max-height: 550px) {
+            overflow: auto;
+            font-size: 14px;
+            height: 100%;
+            width: 40%;
+            .spacer {
+                display: none;
+            }
+        }
+    }
+    h1 {
+        font-size: 4rem;
+        font-family: "Oswald";
     }
     .img-container {
         height: rem(300px);
         width: rem(200px);
         @include aspect-ratio(16, 9);
         @include from-mobile-layout() {
-            height: rem(300px);
-            width: rem(400px);
+            width: 50%;
+            height: 70%;
+            img {
+                object-fit: contain;
+            }
+        }
+        @media (max-height: 600px) {
+            display: none;
         }
     }
-    h1 {
-        @include from-mobile-layout() {
-            font-size: 40px;
-        }
-    }
-    .login {
-        @include from-mobile-layout() {
-            width: 30%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-    }
+
     .spacer {
         border-color: rgb(185, 185, 185);
     }

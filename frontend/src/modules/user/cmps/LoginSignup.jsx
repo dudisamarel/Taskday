@@ -162,7 +162,7 @@ export const LoginSignup = () => {
               {logSignToggler ? (
                 <div>
                   <TextField
-                    style={{ width: "100%", margin: "10px 0 0  0" }}
+                    style={{ width: "100%", margin: "3% 0 0 0 " }}
                     variant="outlined"
                     type="text"
                     name="username"
@@ -172,7 +172,7 @@ export const LoginSignup = () => {
                   />
                   <br />
                   <TextField
-                    style={{ width: "100%", margin: "10px 0 0 0 " }}
+                    style={{ width: "100%", margin: "3% 0 0 0 " }}
                     name="password"
                     type="password"
                     variant="outlined"
@@ -224,7 +224,7 @@ export const LoginSignup = () => {
                       label={"username"}
                     />
                     <TextField
-                      style={{ width: "100%", margin: " 0  0 10px 0 " }}
+                      style={{ width: "100%", margin: " 0  0 3% 0 " }}
                       variant="outlined"
                       name="password"
                       type="password"
